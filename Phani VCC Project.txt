@@ -1,0 +1,37 @@
+Quote of the Day REST API
+
+
+Returns a random motivational quote.
+
+📌 Endpoint
+GET /quote
+
+📤 Sample response
+{
+  "quote": "Success is not final, failure is not fatal."
+}
+
+🧑‍💻 Code (Node.js – VERY SMALL)
+const express = require('express');
+const app = express();
+
+const quotes = [
+  "Success is not final, failure is not fatal.",
+  "Dream big and dare to fail.",
+  "Work hard in silence, let success speak."
+];
+
+app.get('/quote', (req, res) => {
+  const random = quotes[Math.floor(Math.random() * quotes.length)];
+  res.json({ quote: random });
+});
+
+app.listen(3000, () => {
+  console.log("Quote API running on port 3000");
+});
+
+▶ Run
+node app.js
+
+🧪 Test
+curl http://localhost:3000/quote
